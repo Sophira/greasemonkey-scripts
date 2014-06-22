@@ -38,7 +38,7 @@
       // looks like a compatible title dropdown
       var newDiv = document.createElement("div");
 //      newDiv.appendChild(newTextBox);
-      newDiv.innerHTML = "<small>This title dropdown looks textbox-compatible.</small><br>";
+      newDiv.innerHTML = "<small>This title dropdown may be textbox-compatible.</small><br>";
       newDiv.style.fontWeight = "bold";
       var link = document.createElement("a");
       link.innerHTML = "Replace this dropdown with a textbox.";
