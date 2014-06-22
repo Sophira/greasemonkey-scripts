@@ -54,7 +54,7 @@
         var attrs = dropdown.attributes;
         var newTextBox = document.createElement("input");
         for (var k = 0; k < attrs.length; k++) {
-           var attr = attrs.item(k);
+          var attr = attrs.item(k);
           newTextBox.setAttribute(attr.name, attr.value);
         }
         newTextBox.setAttribute("type", "text");
