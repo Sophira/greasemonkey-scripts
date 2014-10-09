@@ -1,5 +1,6 @@
 // ==UserScript==
 // @name        Global: Turn compatible "Title" dropdowns into text boxes
+// @author      Sophie Hamilton
 // @namespace   http://theblob.org/
 // @include     *
 // @version     1

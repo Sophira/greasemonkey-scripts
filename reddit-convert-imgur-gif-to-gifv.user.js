@@ -1,5 +1,6 @@
 // ==UserScript==
 // @name        Reddit: Convert direct imgur GIF links into GIFVs
+// @author      Sophie Hamilton (/u/Sophira)
 // @namespace   http://theblob.org/
 // @include     http://reddit.com/*
 // @include     http://*.reddit.com/*
