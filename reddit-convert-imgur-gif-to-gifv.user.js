@@ -15,7 +15,7 @@
   for (var i = 0; i < links.length; i++) {
     var a = links.item(i);
 	if (a.hostname && a.hostname == "i.imgur.com" && a.pathname.match(/\.gif$/i)) {
-	  a.href += "v";
+	  a.pathname += "v";
 	}
   }
 })();
