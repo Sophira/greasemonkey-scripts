@@ -8,7 +8,7 @@
 // @include     https://reddit.com/*
 // @include     http://*.reddit.com/*
 // @include     https://*.reddit.com/*
-// @version     1
+// @version     2
 // @grant       none
 // ==/UserScript==
 
@@ -41,6 +41,25 @@
         parent.insertBefore(document.createElement("br"), div);
         parent.insertBefore(document.createElement("br"), div);
       }
+    }
+
+    // we also need to fix the tabindex
+    var form = parent;
+    if (parent.id == "searchexpando") { form = parent.parentNode; }   // sidebar
+
+    var el;
+    el = form.querySelector('input[name="restrict_sr"]');
+    if (!el) { el = parent.querySelector('input[name="q"]'); }
+    if (el) {
+      var tabnum = parseInt(el.tabIndex);
+
+      var tabbedelements = document.querySelectorAll("*[tabindex]");
+      for (var j = 0; j < tabbedelements.length; j++) {
+        var tabbedel = tabbedelements.item(j);
+        if (tabbedel.tabIndex > tabnum) { tabbedel.tabIndex++; }
+      }
+
+      div.querySelector("input").tabIndex = tabnum + 1;
     }
   }
 })();
