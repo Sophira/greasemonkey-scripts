@@ -31,7 +31,7 @@
     // because some of the #moresearchinfo styles only trigger if there's a LABEL directly before it, we need to add those back manually. Hax :(
     // in the case of the search not being on the sidebar, we also need to check to see if any BRs need to be added for layout purposes.
     info.style.borderTopWidth = "1px";
-    if (parent.id == "searchexpando") {  // sidebar
+    if (parent.id == "searchexpando") {   // sidebar
       info.style.marginTop = "0px";
     }
     else {
