@@ -8,11 +8,13 @@
 // @include     https://reddit.com/*
 // @include     http://*.reddit.com/*
 // @include     https://*.reddit.com/*
+// @require     https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js
 // @version     2
 // @grant       none
 // ==/UserScript==
 
 (function() {
+  // add the cloudsearch checkbox
   var restricts = document.querySelectorAll('form#search div#moresearchinfo');
   for (var i = 0; i < restricts.length; i++) {
     var checked="false";
@@ -62,4 +64,11 @@
       div.querySelector("input").tabIndex = tabnum + 1;
     }
   }
+
+  // The error message:
+  //    I couldn't understand your query, so I simplified it and ...
+  // is misleading.  Replace it with something more clear.
+  $("div.infobar div.md :contains('understand your query, so I simplified it')")
+    .replaceWith("<p>Cloudsearch syntax error.  The non-Cloudsearch search results are below, but that's probably not what you wanted.</p>");
+
 })();
