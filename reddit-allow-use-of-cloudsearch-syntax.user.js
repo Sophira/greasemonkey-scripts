@@ -8,7 +8,6 @@
 // @include     https://reddit.com/*
 // @include     http://*.reddit.com/*
 // @include     https://*.reddit.com/*
-// @require     https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js
 // @version     2
 // @grant       none
 // ==/UserScript==
@@ -68,7 +67,11 @@
   // The error message:
   //    I couldn't understand your query, so I simplified it and ...
   // is misleading.  Replace it with something more clear.
-  $("div.infobar div.md :contains('understand your query, so I simplified it')")
-    .replaceWith("<p>Cloudsearch syntax error.  The non-Cloudsearch search results are below, but that's probably not what you wanted.</p>");
-
+  var errormsg = document.querySelector("div.infobar div.md > p");
+  if (errormsg && cs == "cloudsearch") {
+    var results = errormsg.innerHTML.match(/^I couldn't understand your query, so I simplified it and searched for "(.*)" instead\./);
+    if (results) {
+      errormsg.innerHTML = 'Cloudsearch syntax error. (<a href="https://cdn.rawgit.com/DeeNewcum/reddit/master/cloudsearch/cloudsearch_reference.html">Need help?</a>) The non-Cloudsearch search results for "' + results[1] + '" are below, but that\'s probably not what you wanted.';
+    }
+  }
 })();
