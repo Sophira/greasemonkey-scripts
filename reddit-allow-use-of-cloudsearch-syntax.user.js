@@ -19,7 +19,9 @@
     var checked="false";
     var qs = new QueryString();
     var cs = qs.value("syntax");
+    var cloudsearched = false;
     if (cs == "cloudsearch") {
+      cloudsearched = true;
       checked = " checked";
     }
 
@@ -64,11 +66,19 @@
     }
   }
 
+  // we need to add the cloudsearch flag to the 'too many results? narrow it down!' links.
+  if (cloudsearched) {
+    var facets = document.querySelectorAll("div.content > div.searchfacets li.searchfacet a.facet");
+    for (var i = 0; i < facets.length; i++) {
+      facets.item(i).href += "&syntax=cloudsearch";
+    }
+  }
+
   // The error message:
   //    I couldn't understand your query, so I simplified it and ...
   // is misleading.  Replace it with something more clear.
   var errormsg = document.querySelector("div.infobar div.md > p");
-  if (errormsg && cs == "cloudsearch") {
+  if (errormsg && cloudsearched) {
     var results = errormsg.innerHTML.match(/^I couldn't understand your query, so I simplified it and searched for "(.*)" instead\./);
     if (results) {
       errormsg.innerHTML = 'Cloudsearch syntax error. (<a href="https://cdn.rawgit.com/DeeNewcum/reddit/master/cloudsearch/cloudsearch_reference.html">Need help?</a>) The non-Cloudsearch search results for "' + results[1] + '" are below, but that\'s probably not what you wanted.';
