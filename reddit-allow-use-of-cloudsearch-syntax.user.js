@@ -8,7 +8,7 @@
 // @include     https://reddit.com/*
 // @include     http://*.reddit.com/*
 // @include     https://*.reddit.com/*
-// @version     2
+// @version     3
 // @grant       none
 // ==/UserScript==
 
