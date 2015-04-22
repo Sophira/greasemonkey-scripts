@@ -1,4 +1,4 @@
 greasemonkey-scripts
 ====================
 
-A collection of Greasemonkey scripts that I write.
+A collection of Greasemonkey scripts from Sophie Hamilton (GitHub: Sophira).
