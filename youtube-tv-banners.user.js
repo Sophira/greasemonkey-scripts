@@ -1,5 +1,6 @@
 // ==UserScript==
 // @name        YouTube: TV-sized banner toggle
+// @author      Sophie Hamilton
 // @description To use this script, simply click on the banner on a YouTube channel to toggle it between the TV-sized banner and the regular one. If you use AdBlock Plus you will need to add an exception rule or you will get blank images on some channels; take a look at the source code for details.
 // @namespace   http://theblob.org/
 // @include     https://www.youtube.com/user/*
