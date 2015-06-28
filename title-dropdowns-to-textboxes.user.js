@@ -81,7 +81,6 @@
       newDiv.appendChild(link);
       dropdown.parentNode.insertBefore(newDiv, dropdown.nextSibling);
 /*
-      
       var attrs = dropdown.attributes;
       var newTextBox = document.createElement("input");
       for (var k = 0; k < attrs.length; k++) {
@@ -99,7 +98,7 @@
       small.appendChild(document.createTextNode("\"" + foundtitles.join("\", \"") + "\""));
       newDiv.appendChild(small);
       dropdown.parentNode.replaceChild(newDiv, dropdown);
-*/      
+*/
     }
   }
 })();
