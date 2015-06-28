@@ -28,35 +28,35 @@
   var second = img.match(secondregex);
   if (header && (first || second)) {
     header.style.cursor = "url(" + zoomcur + "), auto";
-	var profileimg = document.querySelector("a.channel-header-profile-image-container");
-	var headerlinks = document.querySelector("div#header-links");
+    var profileimg = document.querySelector("a.channel-header-profile-image-container");
+    var headerlinks = document.querySelector("div#header-links");
     header.addEventListener("click", function(e) {
-	  var changed = this.getAttribute("sph-yt-userscript-bg-changed");
-	  if (changed == "1") {
-	    this.style.backgroundImage = "";
-		this.style.height = "175px";
-		this.removeAttribute("sph-yt-userscript-bg-changed");
-//		this.style.cursor = "-moz-zoom-out";
-		if (profileimg) { profileimg.style.display = ""; }
-		if (headerlinks) { headerlinks.style.display = ""; }
-	  }
-	  else {
-	    if (first) {
-	      img = img.replace(firstregex, "/w1280/");   // has a bit of a higher bandwidth cost than the web banner size, but not much. Please don't change this to w2120 as YouTube might not like it.
-	      this.style.backgroundImage = img;
-		}
-		else if (second) {
-		  img = img.replace(secondregex, "/channels4_tv_banner.jpg");   // unfortunately this doesn't have a lower-bandwidth version so we get the 2120px-sized one.
-//		  var imgdiv = document.querySelector("#c4-header-bg-container .hd-banner-image");
-//		  imgdiv.style.backgroundImage = img;
+      var changed = this.getAttribute("sph-yt-userscript-bg-changed");
+      if (changed == "1") {
+        this.style.backgroundImage = "";
+        this.style.height = "175px";
+        this.removeAttribute("sph-yt-userscript-bg-changed");
+//        this.style.cursor = "-moz-zoom-out";
+        if (profileimg) { profileimg.style.display = ""; }
+        if (headerlinks) { headerlinks.style.display = ""; }
+      }
+      else {
+        if (first) {
+          img = img.replace(firstregex, "/w1280/");   // has a bit of a higher bandwidth cost than the web banner size, but not much. Please don't change this to w2120 as YouTube might not like it.
           this.style.backgroundImage = img;
-		}
-	    this.style.height = "478px";
-//		this.style.cursor = "-moz-zoom-in";
-		if (profileimg) { profileimg.style.display = "none"; }
-		if (headerlinks) { headerlinks.style.display = "none"; }
-	    this.setAttribute("sph-yt-userscript-bg-changed", "1");
-	  }
-	}, false);
+        }
+        else if (second) {
+          img = img.replace(secondregex, "/channels4_tv_banner.jpg");   // unfortunately this doesn't have a lower-bandwidth version so we get the 2120px-sized one.
+//          var imgdiv = document.querySelector("#c4-header-bg-container .hd-banner-image");
+//          imgdiv.style.backgroundImage = img;
+          this.style.backgroundImage = img;
+        }
+        this.style.height = "478px";
+//        this.style.cursor = "-moz-zoom-in";
+        if (profileimg) { profileimg.style.display = "none"; }
+        if (headerlinks) { headerlinks.style.display = "none"; }
+        this.setAttribute("sph-yt-userscript-bg-changed", "1");
+      }
+    }, false);
   }
 })();
