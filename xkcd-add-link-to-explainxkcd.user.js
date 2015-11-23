@@ -40,7 +40,7 @@ ul.comicNav li.sph-explainbutton a:hover, ul.comicNav li.sph-explainbutton a:foc
         var li = document.createElement("li");
         li.className = "sph-explainbutton";
         var link = document.createElement("a");
-        link.href = "http://www.explainxkcd.com/wiki/index.php/" + comicnum;
+        link.href = "https://www.explainxkcd.com/wiki/index.php/" + comicnum;
         link.appendChild(document.createTextNode("Explain"));
         li.appendChild(link);
         var randomli = randombuttons.item(i).parentNode;
