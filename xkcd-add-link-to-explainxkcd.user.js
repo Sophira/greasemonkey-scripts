@@ -11,25 +11,28 @@
 // @include     https://www.xkcd.com/
 // @include     http://www.xkcd.com/*/
 // @include     https://www.xkcd.com/*/
-// @version     1
+// @version     2
 // @grant       none
 // ==/UserScript==
 
 (function() {
   var title = document.getElementById("ctitle");
-  if (title) {
-    var origin = document.querySelector("#ctitle + .comicNav + #comic + .comicNav + br");
-    if (origin) {
-      var results = origin.nextSibling.data.match(/Permanent link to this comic: http:\/\/xkcd\.com\/(\d+)\//);
+  var origin = document.querySelector("#ctitle + .comicNav + #comic + .comicNav + br");
+  if (title && origin) {
+    var results = origin.nextSibling.data.match(/Permanent link to this comic: http:\/\/xkcd\.com\/(\d+)\//);
+    if (results) {
       var comicnum = results[1];
-      var span = document.createElement("span");
-      span.appendChild(document.createTextNode(" ("));
-      var link = document.createElement("a");
-      link.href = "http://www.explainxkcd.com/wiki/index.php/" + comicnum;
-      link.appendChild(document.createTextNode("explain"));
-      span.appendChild(link);
-      span.appendChild(document.createTextNode(")"));
-      title.appendChild(span);
+      var randombuttons = document.querySelectorAll("#middleContainer > ul.comicNav > li > a[href='//c.xkcd.com/random/comic/']");
+      for (var i = 0; i < randombuttons.length; i++) {
+        var li = document.createElement("li");
+        var link = document.createElement("a");
+        link.href = "http://www.explainxkcd.com/wiki/index.php/" + comicnum;
+        link.appendChild(document.createTextNode("Explain"));
+        li.appendChild(link);
+        var randomli = randombuttons.item(i).parentNode;
+        randomli.parentNode.insertBefore(li, randomli);
+        randomli.parentNode.insertBefore(document.createTextNode("\n"), randomli);
+      }
     }
   }
 })();
