@@ -21,10 +21,24 @@
   if (title && origin) {
     var results = origin.nextSibling.data.match(/Permanent link to this comic: http:\/\/xkcd\.com\/(\d+)\//);
     if (results) {
+      // Add custom styling for our new "Explain" button
+      var style = document.createElement("style");
+      style.appendChild(document.createTextNode("ul.comicNav li.sph-explainbutton a {\
+  background-color: #FF4040;\
+}\
+\
+ul.comicNav li.sph-explainbutton a:hover, ul.comicNav li.sph-explainbutton a:focus {\
+  background-color: #FFFFFF;\
+  color: #FF4040;\
+}"));
+      document.head.appendChild(style);
+
+      // find the navigation bars - specifically the "Random" button in each
       var comicnum = results[1];
       var randombuttons = document.querySelectorAll("#middleContainer > ul.comicNav > li > a[href='//c.xkcd.com/random/comic/']");
       for (var i = 0; i < randombuttons.length; i++) {
         var li = document.createElement("li");
+        li.className = "sph-explainbutton";
         var link = document.createElement("a");
         link.href = "http://www.explainxkcd.com/wiki/index.php/" + comicnum;
         link.appendChild(document.createTextNode("Explain"));
