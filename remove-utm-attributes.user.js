@@ -4,6 +4,8 @@
 // @author         Sophie Hamilton
 // @description    Remove the ?utm_* attributes used by sites that employ web analytics software. In addition to replacing links on document load, this also allows a last line of defense by removing attributes from links that are clicked just before the browser tries to load them.
 // @include        *
+// @version        1
+// @grant          none
 // ==/UserScript==
 (function() {
   var debugme = 0;
