@@ -3,6 +3,7 @@
 // @author      Sophie Hamilton
 // @description To use this script, simply click on the banner on a YouTube channel to toggle it between the TV-sized banner and the regular one. If you use AdBlock Plus you will need to add an exception rule or you will get blank images on some channels; take a look at the source code for details.
 // @namespace   http://theblob.org/
+// @include     https://www.youtube.com/*
 // @include     https://www.youtube.com/user/*
 // @include     https://www.youtube.com/channel/*
 // @version     1
@@ -22,11 +23,15 @@
   var header = document.querySelector("#c4-header-bg-container.has-custom-banner");
   var style = this.currentStyle || window.getComputedStyle(header, null);
   var img = style.backgroundImage;
+
   var firstregex = /\/w2120-[^\/]+\//;
   var secondregex = /\/channels4_banner_hd\.jpg/;
+  var thirdregex = /=w2120-[^\/]+/;
   var first = img.match(firstregex);
   var second = img.match(secondregex);
-  if (header && (first || second)) {
+  var third = img.match(thirdregex)
+
+  if (header && (first || second || third)) {
     header.style.cursor = "url(" + zoomcur + "), auto";
     var profileimg = document.querySelector("a.channel-header-profile-image-container");
     var headerlinks = document.querySelector("div#header-links");
@@ -49,6 +54,10 @@
           img = img.replace(secondregex, "/channels4_tv_banner.jpg");   // unfortunately this doesn't have a lower-bandwidth version so we get the 2120px-sized one.
 //          var imgdiv = document.querySelector("#c4-header-bg-container .hd-banner-image");
 //          imgdiv.style.backgroundImage = img;
+          this.style.backgroundImage = img;
+        }
+        else if (third) {
+          img = img.replace(thirdregex, "=w1280;");
           this.style.backgroundImage = img;
         }
         this.style.height = "478px";
