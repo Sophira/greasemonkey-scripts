@@ -11,7 +11,7 @@
 // @include     https://www.xkcd.com/
 // @include     http://www.xkcd.com/*/
 // @include     https://www.xkcd.com/*/
-// @version     2
+// @version     3
 // @grant       none
 // ==/UserScript==
 
@@ -19,7 +19,7 @@
   var title = document.getElementById("ctitle");
   var origin = document.querySelector("#ctitle + .comicNav + #comic + .comicNav + br");
   if (title && origin) {
-    var results = origin.nextSibling.data.match(/Permanent link to this comic: http:\/\/xkcd\.com\/(\d+)\//);
+    var results = origin.nextSibling.data.match(/Permanent link to this comic: https:\/\/xkcd\.com\/(\d+)\//);
     if (results) {
       // Add custom styling for our new "Explain" button
       var style = document.createElement("style");
