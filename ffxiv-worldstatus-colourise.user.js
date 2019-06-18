@@ -9,20 +9,24 @@
 // ==/UserScript==
 
 (function() {
-  var colours = {
-    "Congested": "#DD0000",
-    "Preferred": "#00BB00",
-          "New": "#00BB00",
-//     "Standard": "#0000DD",
+  var colours = { // text colour, background colour (optional, remove to use default)
+    "Congested": ["#DD0000", "#FFDDDD"],
+    "Preferred": ["#009900", "#CCEECC"],
+          "New": ["#00BB00", "#BBFFBB"],
+//     "Standard": ["#0000DD"],
   };
 
   var cats = document.querySelectorAll(".world-list__world_category > p");
   for (var i = 0; i < cats.length; i++) {
     var cat = cats.item(i);
     var text = cat.childNodes.item(0).data;
-    if (colours[text]) {
-      cat.style.color = colours[text];
+    var col = colours[text];
+    if (col) {
+      cat.style.color = col[0];
       cat.style.fontWeight = "bold";
+      if (col[1]) {
+        cat.parentNode.parentNode.style.backgroundColor = col[1];
+      }
     }
   }
 })();
