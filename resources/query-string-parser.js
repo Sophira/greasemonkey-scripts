@@ -8,6 +8,17 @@
    'As with all the code on these "Javascript Madness" pages, you may use this
     freely in any way without worrying about my copyright at all, and, as
     usual, it is offered without warrantee.' [sic]
+
+   2023-05-22: I have modified the initialisation to use a more strict method
+               of checking if a value was passed in; this allows for correctly
+               creating a QueryString object based on a link's search component
+               without having to test that the search component exists first.
+
+               I also learned today that the original author of the decoder, Jan
+               Wolter, died in 2015 from complications of influenza
+               (https://unixpapa.com/).
+
+               Rest in peace, Jan.
 */
 
 // Query String Parser
@@ -56,7 +67,7 @@ function QueryString(qs)
     this.dict= {};
 
     // If no query string  was passed in use the one from the current page
-    if (!qs) qs= location.search;
+    if (typeof qs === "undefined") qs= location.search;
 
     // Delete leading question mark, if there is one
     if (qs.charAt(0) == '?') qs= qs.substring(1);
